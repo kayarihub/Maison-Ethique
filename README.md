@@ -14,6 +14,22 @@
 
 </div>
 
+## 💗 Portfolio case study — first release (v1.0)
+
+**The first dashboard iteration is complete.** Additional charts are reserved for v1.1.
+
+**Built in Google Data Studio:**
+- 🎀 Executive scorecards: **24 AI systems**, **134 open findings**, **56.42 average internal risk**
+- 🌸 Risk-tier donut: 11 Medium (45.8%), 7 High (29.2%), 6 Low (25%)
+- 🩷 Department-risk bars: Payments (78), Clienteling (72), People (71) have the highest synthetic average scores
+- 🪞 Governance-control stacked bars: Implemented / Partial / Missing / Not assessed across NIST AI RMF, EU AI Act and GDPR considerations
+
+**Underlying synthetic study:** 24 systems · 264 assessments · 104 implemented · 134 Partial/Missing · 2,400 fairness cases. **These are simulated governance signals, not legal compliance findings.**
+
+📓 [Read the v1.0 release notes and future dashboard roadmap](docs/release-notes-v1.md).
+
+**Publishing status:** This repository currently holds the project documentation, banner and SQL starter. The separate downloadable v1.0 project archive contains the complete tested Python source, synthetic datasets, SQLite outputs, dashboard, and four report screenshots. The Google Data Studio report has not been publicly linked or embedded yet.
+
 ## 🩰 Bonjour, governance girlies!
 
 **Maison Éthique** is a luxury-inspired AI governance and compliance portfolio simulation. Imagine a fictional luxury group using AI in personal shopping, marketing, beauty, authentication, recruitment, and supply chain. The goal is to prioritize risks, assess governance controls, explore fairness signals, and document regulatory considerations in a polished pink dashboard. 💕
