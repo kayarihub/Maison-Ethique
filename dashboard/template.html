@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maison Éthique · The AI Risk Atelier</title>
+<style>
+:root{--wine:#682642;--rose:#b95580;--blush:#fff4f8;--ink:#51243a}
+*{box-sizing:border-box}body{margin:0;background:#fff8fb;color:var(--ink);font:15px/1.5 'Trebuchet MS',Arial,sans-serif}
+header{background:linear-gradient(120deg,#682642,#b95580,#e6a9c3);color:#fff;padding:50px max(25px,calc((100vw - 1160px)/2))}
+h1{font:700 clamp(34px,5vw,64px) Georgia,serif;margin:5px 0}h2{font:700 22px Georgia,serif;margin:0 0 14px}
+main{max-width:1200px;margin:auto;padding:25px 20px 70px}.notice{background:#ffe8f1;border-left:4px solid var(--wine);padding:14px 18px;border-radius:9px}
+.filters{display:flex;flex-wrap:wrap;gap:14px;margin:23px 0}label{font-weight:bold}select{display:block;margin-top:5px;padding:10px;border:1px solid #e9bfd0;background:white;border-radius:10px;color:var(--ink)}
+button{align-self:end;background:var(--wine);border:0;border-radius:10px;padding:10px 18px;color:white;cursor:pointer}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card,.panel{background:#fff;border:1px solid #f1d1df;border-radius:18px;padding:20px;box-shadow:0 7px 22px #7e2b5010}.card small{color:#915670}.card strong{display:block;color:var(--wine);font-size:34px;margin-top:8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:15px}
+.bar{display:grid;grid-template-columns:minmax(85px,140px) 1fr 55px;gap:10px;align-items:center;margin:13px 0;font-size:13px}.track{height:12px;background:#fae2eb;border-radius:20px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#e9acc5,#9a4067);border-radius:20px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:10px 8px;border-bottom:1px solid #f6e1e9;text-align:left}.scroll{overflow:auto}.pill{display:inline-block;border-radius:12px;padding:3px 9px;background:#f8dce8}.pill.High{background:#f9c3d2}.pill.Medium{background:#ffeacc}.pill.Low{background:#e3f3e5}.muted,footer{color:#876d7a;font-size:13px}footer{margin-top:25px}
+@media(max-width:780px){.kpis{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}@media(max-width:480px){.kpis{grid-template-columns:1fr 1fr}.card{padding:12px}}
+</style></head><body>
+<header><small>🎀 MAISON ÉTHIQUE · GOVERNANCE STUDIO</small><h1>The AI Risk Atelier ♡</h1><p>Luxury intelligence meets responsible innovation. An interactive synthetic AI governance case study.</p></header>
+<main><div class="notice">💌 <b>Synthetic portfolio simulation.</b> All company data and audit outcomes are fictional. The internal risk tiers are not legal EU AI Act classifications. Nothing here is legal advice or a compliance certification.</div>
+<div class="filters"><label>🌸 Department<select id="department"></select></label><label>🎀 Risk tier<select id="tier"><option value="">All tiers</option><option>High</option><option>Medium</option><option>Low</option></select></label><label>💗 Framework<select id="framework"><option value="">All frameworks</option><option>NIST AI RMF</option><option>GDPR</option><option>EU AI Act</option></select></label><button id="reset">Reset filters ↺</button></div>
+<div id="kpis" class="kpis"></div>
+<div class="grid"><section class="panel"><h2>🩰 Internal risk tiers</h2><div id="risk"></div></section><section class="panel"><h2>🌷 Governance control status</h2><div id="status"></div></section><section class="panel"><h2>💗 Department spotlight</h2><div id="departments"></div></section><section class="panel"><h2>🧁 Fairness audit · simulated offers</h2><p class="muted">Selection rates across 2,400 simulated cases; independent of the system filters.</p><div id="fairness"></div><p class="muted" id="fairness_note"></p></section>
+<section class="panel" style="grid-column:1/-1"><h2>✨ AI system register</h2><div class="scroll"><table><thead><tr><th>ID</th><th>AI system</th><th>Department</th><th>Score</th><th>Tier</th><th>Open findings</th></tr></thead><tbody id="register"></tbody></table></div></section>
+<section class="panel" style="grid-column:1/-1"><h2>⚖️ Regulatory mapping</h2><div id="regulatory"></div></section></div>
+<footer>All findings synthetic · NIST AI RMF is voluntary · GDPR and EU AI Act obligations are context-specific · No compliance certification or statutory classification is claimed.</footer>
+</main><script>
+const D=/*__PAYLOAD__*/;
+const el=id=>document.getElementById(id);
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+el('department').innerHTML='<option value="">All departments</option>'+[...new Set(D.systems.map(x=>x.department))].sort().map(x=>'<option>'+escapeHtml(x)+'</option>').join('');
+function counts(rows,key){const result={};for(const row of rows){result[row[key]]=(result[row[key]]||0)+1}return Object.entries(result).sort((a,b)=>b[1]-a[1])}
+function bars(id,items,percent=false){const max=Math.max(1,...items.map(x=>x[1]));el(id).innerHTML=items.map(([label,value])=>'<div class="bar"><span>'+escapeHtml(label)+'</span><div class="track"><div class="fill" style="width:'+(value/max*100)+'%"></div></div><b>'+(percent?(value*100).toFixed(1)+'%':value)+'</b></div>').join('')||'<p>No matching data</p>'}
+function render(){
+const systems=D.systems.filter(s=>(!el('department').value||s.department===el('department').value)&&(!el('tier').value||s.risk_tier===el('tier').value));
+const ids=new Set(systems.map(s=>s.system_id));
+const assessments=D.controls.filter(a=>ids.has(a.system_id)&&(!el('framework').value||a.framework===el('framework').value));
+const open=assessments.filter(a=>a.status==='Missing'||a.status==='Partial').length;
+const impl=assessments.filter(a=>a.status==='Implemented').length;
+const kpis=[['AI systems',systems.length],['High internal risk',systems.filter(s=>s.risk_tier==='High').length],['Controls implemented',assessments.length?Math.round(100*impl/assessments.length)+'%':'—'],['Open findings',open]];
+el('kpis').innerHTML=kpis.map(([name,value])=>'<div class="card"><small>'+escapeHtml(name)+'</small><strong>'+value+'</strong>♡</div>').join('');
+bars('risk',counts(systems,'risk_tier'));bars('status',counts(assessments,'status'));bars('departments',counts(systems,'department').slice(0,10));
+bars('fairness',D.fairness.map(x=>[x.group,x.selection_rate]),true);
+el('fairness_note').textContent='Maximum selection-rate gap: '+D.summary.fairness.max_selection_rate_gap_pp+' percentage points. Screening signal only; not a causal or legal conclusion.';
+el('register').innerHTML=[...systems].sort((a,b)=>b.risk_score-a.risk_score).map(s=>{const n=assessments.filter(a=>a.system_id===s.system_id&&(a.status==='Missing'||a.status==='Partial')).length;return '<tr><td>'+escapeHtml(s.system_id)+'</td><td>'+escapeHtml(s.name)+'</td><td>'+escapeHtml(s.department)+'</td><td>'+s.risk_score+'</td><td><span class="pill '+escapeHtml(s.risk_tier)+'">'+escapeHtml(s.risk_tier)+'</span></td><td>'+n+'</td></tr>'}).join('');
+el('regulatory').innerHTML=D.regulatory.map(x=>'<p><b>'+escapeHtml(x.framework)+'</b> · '+escapeHtml(x.type)+'<br><span class="muted">'+escapeHtml(x.note)+'</span></p>').join('');
+}
+['department','tier','framework'].forEach(id=>el(id).addEventListener('change',render));
+el('reset').addEventListener('click',()=>{['department','tier','framework'].forEach(id=>el(id).value='');render()});
+render();
+</script></body></html>
