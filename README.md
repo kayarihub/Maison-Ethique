@@ -1,2 +1,98 @@
-# Maison-Ethique
-Where luxury meets responsible AI. An interactive AI governance and compliance dashboard featuring risk assessments, fairness audits, regulatory mapping (EU AI Act, GDPR &amp; NIST AI RMF), and data-driven insights using Python, SQL, and synthetic luxury industry data. 
+<div align="center">
+
+![Maison Éthique pink banner](assets/maison-ethique-banner.svg)
+
+# 💗 Maison Éthique 💗
+### 🎀 The AI Risk Atelier 🎀
+
+*Where luxury meets responsible intelligence.* ✨
+
+![Python](https://img.shields.io/badge/Python-Analytics-F8BBD0?style=for-the-badge)
+![SQL](https://img.shields.io/badge/SQLite-Governance%20Queries-F2B6D0?style=for-the-badge)
+![Dashboard](https://img.shields.io/badge/Dashboard-Pink%20%26%20Interactive-FFE0ED?style=for-the-badge)
+![Data](https://img.shields.io/badge/Data-100%25%20Synthetic-E9B2CA?style=for-the-badge)
+
+</div>
+
+## 🩰 Bonjour, governance girlies!
+
+**Maison Éthique** is a luxury-inspired AI governance and compliance portfolio simulation. Imagine a fictional luxury group using AI in personal shopping, marketing, beauty, authentication, recruitment, and supply chain. The goal is to prioritize risks, assess governance controls, explore fairness signals, and document regulatory considerations in a polished pink dashboard. 💕
+
+> 💌 **Transparency first:** All AI systems, assessments, customer-like cases, scores, and outcomes are **synthetic**. Internal risk tiers are **not EU AI Act legal classifications**, and this project is neither legal advice nor a compliance certification.
+
+## 🎀 What's in the atelier?
+
+- 🌸 **AI system register:** 24 fictional luxury-industry use cases
+- 💗 **Risk scoring:** Weighted internal prioritization across five dimensions
+- 🧁 **Fairness audit:** 2,400 simulated decisions with group-level selection rates
+- 🪞 **Governance mapping:** NIST AI RMF, GDPR, and EU AI Act considerations
+- 🩷 **Interactive dashboard:** Department, risk-tier, and framework filters
+- ✨ **SQL analytics:** Risk concentration, control status, and fairness metrics
+
+## 💻 Let's get glam
+
+Python 3.9+ is sufficient; no third-party packages needed.
+
+```bash
+python3 src/build.py
+python3 -m unittest discover -s tests
+open dashboard/index.html
+```
+
+The fixed-seed generator writes synthetic CSVs to `data/`, a SQLite database and fairness metrics to `outputs/`, and a standalone pink dashboard to `dashboard/index.html`.
+
+## 🌷 How the risk score works
+
+| 💕 Dimension | 🎀 Weight |
+|---|---:|
+| Potential impact | 30% |
+| Data sensitivity | 25% |
+| Autonomy | 20% |
+| Scale | 15% |
+| Opacity | 10% |
+
+Each dimension scores 1–5; the weighted result is scaled to 0–100 style (minimum possible score 20). **Low below 45 · Medium 45–69 · High 70+.** This is an illustrative *internal* rubric, not a legal classification.
+
+## ⚖️ A little legal sparkle
+
+- 💗 **NIST AI RMF:** Voluntary guidance structured around Govern, Map, Measure, and Manage.
+- 🌸 **GDPR:** Binding where applicable; assess legal basis, data rights, and possible DPIA obligations.
+- 🎀 **EU AI Act:** Requirements depend on the system's purpose, provider/deployer role, legal classification, and applicable dates. **Internal “High” does not mean legally “high-risk AI.”**
+
+See [methodology](docs/methodology.md) for assumptions and limitations.
+
+## 🗂️ What's in my beauty bag?
+
+```text
+maison-ethique/
+├── README.md
+├── assets/maison-ethique-banner.svg
+├── src/build.py
+├── sql/analysis.sql
+├── dashboard/template.html
+├── dashboard/index.html
+├── data/*.csv
+├── outputs/
+├── docs/methodology.md
+└── tests/test_build.py
+```
+
+## 💼 Skills, but make them chic
+
+**Python ETL** · **SQL** · **AI risk assessment** · **Fairness auditing** · **Governance controls** · **Regulatory mapping** · **Data visualization** · **Executive storytelling**
+
+## 📚 Official references
+
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [EU AI Act (EUR-Lex)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+- [GDPR (EUR-Lex)](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+
+---
+
+<div align="center">
+
+### 💕 Thank you for visiting the atelier!
+
+*Ethics is always in style.* 🎀 🌸 ✨
+
+</div>
