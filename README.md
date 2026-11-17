@@ -14,6 +14,18 @@
 
 </div>
 
+## 🎀 Explore the Google Data Studio report
+
+<div align="center">
+
+### 💗 [Open the Maison Éthique Interactive Dashboard](https://datastudio.google.com/reporting/82b07e34-b80e-4511-baea-e2e5079fccf8)
+
+*Executive risk KPIs · AI risk distribution · Department-level analysis · Governance control status*
+
+</div>
+
+The report uses synthetic datasets and includes four visualizations in this first release. Additional charts and fairness-audit views are planned for future versions. **Viewer access depends on the report's Google Data Studio sharing settings.** If a visitor sees a permission prompt, the owner needs to enable link-based viewing and ensure that data-source credentials allow report viewers to load the charts.
+
 ## 💗 Portfolio case study — first release (v1.0)
 
 **The first dashboard iteration is complete.** Additional charts are reserved for v1.1.
@@ -28,7 +40,7 @@
 
 📓 [Read the v1.0 release notes and future dashboard roadmap](docs/release-notes-v1.md).
 
-**Publishing status:** This repository currently holds the project documentation, banner and SQL starter. The separate downloadable v1.0 project archive contains the complete tested Python source, synthetic datasets, SQLite outputs, dashboard, and four report screenshots. The Google Data Studio report has not been publicly linked or embedded yet.
+**Publishing status:** This repository currently holds the project documentation, banner and SQL starter. The separate downloadable v1.0 project archive contains the complete tested Python source, synthetic datasets, SQLite outputs, dashboard, and four report screenshots. The Google Data Studio report URL is now linked above; public viewer access has not been independently verified.
 
 ## 🩰 Bonjour, governance girlies!
 
